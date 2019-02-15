@@ -79,16 +79,15 @@ Please specify the CUDA SDK version you want to use, e.g. 7.0. [Leave empty to u
 Please specify the location where CUDA  toolkit is installed. Refer to README.md for more details. [Default is /usr/local/cuda]:   
 Please specify the location where cuDNN  library is installed. Refer to README.md for more details. [Default is /usr/local/cuda]: /usr  
 Please note that each additional compute capability significantly increases your build time and binary size. [Default is: 6.1]: 6.2  
-Do you wish to build TensorFlow with OpenCL support? [y/N]: N   #這個必須選N，否則會出錯
-Do you want to use clang as CUDA compiler? [y/N]: N   #這個必須選N，否則會出錯  
+Do you wish to build TensorFlow with OpenCL support? [y/N]: N   #這個必須選N，否則會出錯  
+Do you want to use clang as CUDA compiler? [y/N]: N   #這個必須選N，否則會出錯   
 Do you wish to build TensorFlow with MPI support? [y/N]: N   #這個必須選N，否則會出錯  
 Please specify optimization flags to use during compilation when bazel option "--config=opt" is specified [Default is -march=native]: #根據官網教程，直接回車   
-
-  
+    
 $ bazel build -c opt --local_resources 3072,4.0,1.0 --verbose_failures --config=cuda //tensorflow/tools/pip_package:build_pip_package  
 (編譯過程約3個小時) 若之後要更改coufigure ，須再設定./configure後重新bazel build一次  
-
-#修改bazel version verify
+  
+#修改bazel version verify  
 #/home/nvidia/tensorflow/tensorflow/worksapce.bzl 第48行  
 #/home/nvidia/.cache/bazel/_bazel_nvidia/d2751a49dacf4cb14a513ec663770624/external/io_bazel_rules_closure/closure/repositories.bzl 第69行  
 修改為check_version("0.0.0")  
