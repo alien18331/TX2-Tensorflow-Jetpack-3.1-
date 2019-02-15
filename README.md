@@ -25,7 +25,7 @@ Tensorflow 1.5
 sudo ~/tegrastats  
 (用來方便看執行的東西有沒有在用GPU跑等等)  
   
-###建置swapfile  
+### 建置swapfile  
 $ git clone https://github.com/jetsonhacks/postFlashTX1  
 $ cd postFlash/  
 $ sudo ./creatSwapfile.sh –d ‘ /media/ubuntu/JetsonSSD’ –s 10 –a  
@@ -36,17 +36,17 @@ $ sudo ./creatSwapfile.sh –d ‘ /media/ubuntu/JetsonSSD’ –s 10 –a
 -> Identify as 選擇 UUID  
 (重開機)  
   
-###安裝JDK (目前版本是1.8.0_171，可用 $ java -version 查看)  
+### 安裝JDK (目前版本是1.8.0_171，可用 $ java -version 查看)  
 $ sudo add-apt-repository ppa:webupd8team/java  
 $ sudo apt-get update  
 $ sudo apt-get install oracle-java8-installer  
   
-###安裝Python依賴  
+### 安裝Python依賴  
 $ sudo apt-get install zip unzip autoconf automake libtool curl zlib1g-dev maven –y  
 $ sudo apt-get install python-numpy swig python-dev python-pip python-wheel -y  
 (python在刷機過程已安裝好   安裝linux內附python)  
 
-###安裝 bazel 版本 0.11.1
+### 安裝 bazel 版本 0.11.1
 $ wget --no-check-certificate https://github.com/bazelbuild/bazel/releases/download/0.11.1/bazel-0.11.1-dist.zip  
 $ unzip bazel-0.11.1-dist.zip -d bazel-0.11.1-dist  
 $ cd ./bazel.0.11.1-dist  
@@ -54,7 +54,7 @@ $ ./compile.sh
 (編譯過程有錯誤 有可能為bazel 版本比對bug後面會提到)  
 $ sudo cp output/bazel /usr/local/bin  
   
-###下載 TensowFlow 版本1.5  
+### 下載 TensowFlow 版本1.5  
 $ cd  
 $ git clone https://github.com/tensorflow/tensorflow.git  
 $ cd ./tensorflow  
@@ -66,7 +66,7 @@ $ sudo gedit tensorflow/stream_executor/cuda/cuda_gpu_executor.cc
      LOG(INFO) << "ARM has no NUMA node, hardcoding to return zero";  
      return 0;  
      
-###編譯 TensowFlow 版本1.5  
+### 編譯 TensowFlow 版本1.5  
 $ sudo mkdir /usr/lib/aarch64-linux-gnu/include/  
 $ sudo cp /usr/include/cudnn.h /usr/lib/aarch64-linux-gnu/include/cudnn.h  
   
@@ -92,13 +92,13 @@ $ bazel build -c opt --local_resources 3072,4.0,1.0 --verbose_failures --config=
 #/home/nvidia/.cache/bazel/_bazel_nvidia/d2751a49dacf4cb14a513ec663770624/external/io_bazel_rules_closure/closure/repositories.bzl 第69行  
 修改為check_version("0.0.0")  
   
-###TensorFlow Package (Generate a wheel)  
+### TensorFlow Package (Generate a wheel)  
 $ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg  
 $ mv /tmp/tensorflow_pkg/tensorflow-1.5.0-cp27-cp27mu-linux_aarch64.whl $HOME  
 $ sudo pip install $HOME/tensorflow-1.5.0-cp27-cp27mu-linux_aarch64.whl  
 (for python 2.x)  
   
-###TensorFlow & 確認TF version  
+### TensorFlow & 確認TF version  
 #cd到其他目錄，在tensorflow目錄下import tensorflow  
 #會出現 ImportError: No module named platform  
 cd  
@@ -109,7 +109,7 @@ python
    
 有成功出現代表安裝成功了~  
 
-###安裝Keras  
+### 安裝Keras  
 $ sudo apt-get install python-scipy  python-numpy python-pil python-matplotlib libpng-dev python-decorator python-imaging libblas-common libblas3 libgfortran3 liblapack3 libgdf5-dev libhdf5-dev  
 $ pip install --upgrade pip  
 
